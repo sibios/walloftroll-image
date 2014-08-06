@@ -2,15 +2,29 @@
 require 'net/http'
 require 'uri'
 
-LEMON_PARTY = URI.parse("")
+SFW = {
+	LOLFACE: "http://f.st-hatena.com/images/fotolife/c/caramell/20111203/20111203235427.png"
+}
+
+MEME = {
+	DOGE: "http://media.moddb.com/images/groups/1/4/3099/203320_v0_600x.1.jpg"
+}
+
+NSFW = {
+	GOATSE: "http://goatse.info/hello.jpg",
+	LEMON_PARTY: "",
+	TUBGIRL: "http://tubgirl.ca/tubgirl.jpg"
+}
 
 def troll_sauce(src)
 	loop do
-		conn = Net::HTTP.get(URI.parse(src+"?#{rand(10**256)}"))
+		path = src+"?foobar=#{rand(10**256)}"
+		puts "[DEBUG] Getting #{path}"
+		conn = Net::HTTP.get(URI.parse(path))
 		sleep(5)
 	end
 end
 
 if $0 == __FILE__
-	troll_sauce(LEMON_PARTY)
+	troll_sauce(SFW[:LOLFACE])
 end
