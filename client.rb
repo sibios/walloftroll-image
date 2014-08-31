@@ -1,20 +1,8 @@
 #!/usr/bin/env ruby
 require 'net/http'
 require 'uri'
+require 'json'
 
-SFW = {
-	LOLFACE: "http://f.st-hatena.com/images/fotolife/c/caramell/20111203/20111203235427.png"
-}
-
-MEME = {
-	DOGE: "http://media.moddb.com/images/groups/1/4/3099/203320_v0_600x.1.jpg"
-}
-
-NSFW = {
-	GOATSE: "http://goatse.info/hello.jpg",
-	LEMON_PARTY: "",
-	TUBGIRL: "http://tubgirl.ca/tubgirl.jpg"
-}
 
 def troll_sauce(src)
 	loop do
@@ -26,5 +14,6 @@ def troll_sauce(src)
 end
 
 if $0 == __FILE__
-	troll_sauce(SFW[:LOLFACE])
+	images = JSON.parse(File.open('images.json','r').read)
+	troll_sauce(images["sfw"]["awesome_face"])
 end
